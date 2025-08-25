@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+:root {
+  --primary-color: #5a67d8;       /* Roxo vivo */
+  --primary-color-light: #7f8aff; /* Roxo claro */
+  --primary-color-dark: #3c4ac8;  /* Roxo escuro */
+  --bg-glass: rgba(255, 255, 255, 0.25);
+  --shadow-glass: rgba(0, 0, 0, 0.15);
+  --text-color: #1e2022;
+  --text-light: #666;
+  --error-color: #f44336;
+  --success-color: #4caf50;
+  --border-radius: 14px;
+  --transition-speed: 0.3s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: 'Open Sans', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 3rem 1rem;
+  color: var(--text-color);
+}
+
+.container {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--border-radius);
+  box-shadow: 0 8px 32px var(--shadow-glass);
+  width: 100%;
+  max-width: 600px;
+  padding: 2.5rem 2rem;
+  border: 1px solid rgba(255 255 255 / 0.18);
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 2rem;
+  letter-spacing: 1.2px;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+/* Flexbox para input + botão alinhados, com espaçamento e responsividade */
+.container p {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.input-tarefa {
+  flex: 1;
+  min-width: 220px;
+  padding: 1rem 1.2rem;
+  font-size: 1.1rem;
+  border-radius: var(--border-radius);
+  border: none;
+  outline: none;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+  transition: box-shadow var(--transition-speed) ease;
+  background: rgba(255 255 255 / 0.75);
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.input-tarefa::placeholder {
+  color: var(--text-light);
+  font-weight: 400;
+}
+
+.input-tarefa:focus {
+  box-shadow: 0 0 15px var(--primary-color-light);
+}
+
+/* Botão com efeito 3D e animação suave */
+.btn-tarefa {
+  background: linear-gradient(145deg, var(--primary-color-light), var(--primary-color));
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 1rem 1.5rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(90, 103, 216, 0.5);
+  transition: all var(--transition-speed) ease;
+  user-select: none;
+  flex-shrink: 0;
+  min-width: 160px;
+  text-align: center;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efeito "pressionar" no clique */
+.btn-tarefa:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 6px rgba(90, 103, 216, 0.7);
+}
+
+.btn-tarefa:hover {
+  background: var(--primary-color-dark);
+  box-shadow: 0 8px 20px rgba(60, 74, 200, 0.7);
+}
+
+/* Lista de tarefas moderna com bordas arredondadas e sombra leve */
+.tarefas {
+  list-style: none;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color-light) transparent;
+}
+
+/* Scrollbar customizada para Firefox */
+.tarefas {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color-light) transparent;
+}
+
+/* Scrollbar customizada para Chrome, Edge e Safari */
+.tarefas::-webkit-scrollbar {
+  width: 8px;
+}
+.tarefas::-webkit-scrollbar-track {
+  background: transparent;
+}
+.tarefas::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color-light);
+  border-radius: 10px;
+  border: 2px solid transparent;
+}
+
+/* Cada tarefa estilizada com glassmorphism e animação */
+.tarefas li {
+  background: rgba(255 255 255 / 0.15);
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #fff;
+  backdrop-filter: blur(5px);
+  transition: background 0.3s ease, transform 0.2s ease;
+  cursor: default;
+  user-select: none;
+}
+
+.tarefas li:hover {
+  background: rgba(255 255 255 / 0.3);
+  transform: translateX(10px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+/* Botão apagar estilizado com animação e efeito neon */
+.tarefas li button {
+  background: transparent;
+  border: 2px solid var(--error-color);
+  color: var(--error-color);
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 6px transparent;
+  user-select: none;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  position: relative;
+  overflow: hidden;
+}
+
+.tarefas li button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, var(--error-color), transparent);
+  transform: translateY(-50%);
+  transition: left 0.5s ease;
+  z-index: 0;
+}
+
+.tarefas li button:hover {
+  color: #fff;
+  background: var(--error-color);
+  box-shadow: 0 0 12px var(--error-color);
+}
+
+.tarefas li button:hover::before {
+  left: 100%;
+}
+
+/* Tarefa concluída - efeito riscado e cor desbotada */
+.tarefas li.concluida {
+  text-decoration: line-through;
+  opacity: 0.6;
+  color: var(--success-color);
+  background: rgba(76 175 80 / 0.15);
+  box-shadow: 0 4px 10px rgba(76,175,80,0.2);
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+}
+
+.tarefas li.concluida:hover {
+  background: rgba(76 175 80 / 0.3);
+  opacity: 0.8;
+  transform: translateX(0);
+  box-shadow: 0 6px 20px rgba(76,175,80,0.4);
+}
+
+/* RESPONSIVO - adapta para mobile */
+@media (max-width: 480px) {
+  .container {
+    padding: 2rem 1rem;
+    max-width: 100%;
+  }
+  .input-tarefa {
+    min-width: 150px;
+    font-size: 1rem;
+  }
+  .btn-tarefa {
+    min-width: 120px;
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+  }
+  .tarefas li {
+    font-size: 1rem;
+    padding: 0.9rem 1.2rem;
+  }
+}
